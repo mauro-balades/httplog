@@ -21,4 +21,16 @@ namespace frontend {
 
         return ComponentBase::OnEvent(event);
     }
+
+    Element MainComponent::Render() {
+        return vbox({
+            text("STATS RESULT")   | border | flex,
+            hbox({
+                text("CONFIGURATION OR SOME SHIT")   | border | flex,
+                vbox({
+                    text("SERVER LOGS"),
+                }) | border | flex,
+            }) | flex
+        }) | flex;
+    }
 }

@@ -19,6 +19,6 @@ int main(int argc, char *argv[]) {
                   ftxui::Sender<std::wstring> sender,
                   ftxui::ScreenInteractive* screen) -> void {
 
-        std::cout << "hey" << std::endl;
+
     });
 }
