@@ -17,19 +17,30 @@ namespace frontend {
         while (receiver_->HasPending()) {
             std::wstring line;
             receiver_->Receive(&line);
+
+            printf("heyllo\n");
+
+            this->parsed_logs.push_back(line);
         }
 
         return ComponentBase::OnEvent(event);
     }
 
     Element MainComponent::Render() {
+
+        auto full_logs = Elements {};
+
+        for (auto log : this->parsed_logs) {
+            full_logs.push_back(text(log));
+        }
+
         return vbox({
-            text("STATS RESULT")   | border | flex,
+            vbox({
+                text("STATS RESULT")
+            }) | border | flex,
             hbox({
-                text("CONFIGURATION OR SOME SHIT")   | border | flex,
-                vbox({
-                    text("SERVER LOGS"),
-                }) | border | flex,
+                text("CONFIGURATION OR SOME SHIT") | border | flex,
+                vbox(full_logs) | border | flex,
             }) | flex
         }) | flex;
     }

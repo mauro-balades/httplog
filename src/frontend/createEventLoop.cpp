@@ -15,7 +15,6 @@
 #include <ftxui/component/receiver.hpp>
 #include "ftxui/component/screen_interactive.hpp"
 
-
 namespace frontend {
     int FrontendService::createEventLoop(int log_fd, std::function<void(int,
                   ftxui::Sender<std::wstring>,
