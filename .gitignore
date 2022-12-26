@@ -31,6 +31,9 @@
 *.out
 *.app
 
+
+/httplog
+
 _deps/
 CMakeFiles/
 CMakeCache.txt
@@ -38,4 +41,3 @@ Makefile
 CPackSourceConfig.cmake
 CPackConfig.cmake
 cmake_install.cmake
-./httplog
