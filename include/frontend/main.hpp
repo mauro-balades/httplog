@@ -13,7 +13,9 @@ namespace frontend {
             FrontendService();
             ~FrontendService() = default;
 
-            int createEventLoop(std::function<void()> callback);
+            int createEventLoop(int log_fd, std::function<void(int,
+                  ftxui::Sender<std::wstring>,
+                  ftxui::ScreenInteractive*)> callback);
 
         private:
 

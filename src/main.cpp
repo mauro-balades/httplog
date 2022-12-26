@@ -12,9 +12,13 @@ int main(int argc, char *argv[]) {
         log_fd = backend::getFileFromArgv(argv[1]);
     } else {
         std::cout << "error: (TODO) file from stdin" << std::endl;
+        exit(1);
     }
 
-    return frontendSerice->createEventLoop([&]() -> void {
+    return frontendSerice->createEventLoop(log_fd, [&](int fd,
+                  ftxui::Sender<std::wstring> sender,
+                  ftxui::ScreenInteractive* screen) -> void {
+
         std::cout << "hey" << std::endl;
     });
 }
