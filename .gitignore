@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+_deps/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+CPackSourceConfig.cmake
+CPackConfig.cmake
+cmake_install.cmake
+./httplog
