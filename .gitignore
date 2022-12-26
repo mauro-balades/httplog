@@ -33,6 +33,7 @@
 
 
 /httplog
+.vscode/
 
 _deps/
 CMakeFiles/

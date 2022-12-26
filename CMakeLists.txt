@@ -17,13 +17,29 @@ endif()
 
 # ------------------------------------------------------------------------------
 
+file(GLOB_RECURSE PROJECT_HEADERS include/frontend/*.hpp include/backend/*.hpp)
+file(GLOB_RECURSE PROJECT_SOURCES src/*.cpp src/frontend/*.cpp src/backend/*.cpp)
+file(GLOB_RECURSE PROJECT_CMAKE_UTILS cmake/*.cmake)
+file(GLOB_RECURSE PROJECT_MISC *.md *.txt)
+set (PROJECT_FILES
+  ${PROJECT_HEADERS}
+  ${PROJECT_SOURCES}
+  ${PROJECT_CMAKE_UTILS}
+  ${PROJECT_MISC})
+
 project(httplog
   LANGUAGES CXX
   VERSION 1.0.0
 )
 
-add_executable(httplog src/main.cpp)
-target_include_directories(httplog PRIVATE src)
+add_executable(httplog ${PROJECT_FILES})
+target_include_directories(${PROJECT_NAME} PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+    $<INSTALL_INTERFACE:include> PRIVATE source)
+    target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_INCLUDE_DIRS})
+
+# message(LOG "${PROJECT_FILES}")
 
 target_link_libraries(httplog
   PRIVATE ftxui::screen
