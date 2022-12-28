@@ -8,6 +8,8 @@
 #include <codecvt>
 #include <locale>
 
+#include <sstream>
+
 #include "frontend/main.hpp"
 #include "backend/main.hpp"
 
@@ -30,24 +32,12 @@ int main(int argc, char *argv[]) {
         int buffer_size = 1 << 10;
         char buffer[buffer_size];
 
-        while (true) {
-            int c = read(fd, buffer, buffer_size);
-            for (int i = 0; i < c; ++i) {
-                if (buffer[i] == '\n') {
-                    sender->Send(std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(line));
-                    line = "";
-                } else {
-                    line.push_back(buffer[i]);
-                }
-            }
+        read(fd, buffer, buffer_size);
 
-            // Refresh the screen:
-            screen->PostEvent(ftxui::Event::Custom);
-
-            if (c == 0) {
-                using namespace std::chrono_literals;
-                std::this_thread::sleep_for(0.5s);
-            }
+        std::string file_contents(buffer);
+        std::istringstream fss(file_contents);
+        for(std::string line; std::getline(fss, line);) {
+            sender->Send(std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(line));
         }
     });
 }

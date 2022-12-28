@@ -2,23 +2,26 @@
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/receiver.hpp>
 #include <ftxui/component/component.hpp>
+#include <string>
 
 #include "frontend/components/MainComponent.hpp"
+
+#include "backend/parser/LogsParser.hpp"
 
 using namespace ftxui;
 
 namespace frontend {
     MainComponent::MainComponent(Receiver<std::wstring> receiver)
-        : receiver_(std::move(receiver)) {
-
+        : _receiver(std::move(receiver)) {
+        _parser = new backend::parser::LogsParser("hey %s");
     }
 
     bool MainComponent::OnEvent(Event event) {
-        while (receiver_->HasPending()) {
+        while (_receiver->HasPending()) {
             std::wstring line;
-            receiver_->Receive(&line);
+            _receiver->Receive(&line);
 
-            printf("heyllo\n");
+            auto parsed = _parser->parse_line(line);
 
             this->parsed_logs.push_back(line);
         }
