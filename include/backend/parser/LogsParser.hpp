@@ -5,40 +5,40 @@
 #define __BACKEND_LOGS_PARSER_H_
 
 namespace backend {
-    namespace parser {
-        struct ParsedLog {
-            std::string path;
+namespace parser {
+struct ParsedLog {
+  std::string path;
 
-            enum RequestMethod {
-                GET,
-                POST,
-                PUT,
-                DELETE,
-                PATCH,
-                TRACE,
-                OPTIONS,
-                CONNECT,
-                HEAD,
-            } method;
-        };
+  enum RequestMethod {
+    GET,
+    POST,
+    PUT,
+    DELETE,
+    PATCH,
+    TRACE,
+    OPTIONS,
+    CONNECT,
+    HEAD,
+  } method;
+};
 
-        class LogsParser {
-            public:
-                LogsParser(std::string format);
-                ~LogsParser() = default;
+class LogsParser {
+public:
+  LogsParser(std::string format);
+  ~LogsParser() = default;
 
-                ParsedLog parse_line(std::wstring line);
+  ParsedLog parse_line(std::wstring line);
 
-            private:
-                std::string _format;
+private:
+  std::string _format;
 
-                int _str_index = 0;
-                int _fmt_index = 0;
+  int _str_index = 0;
+  int _fmt_index = 0;
 
-                char log_char;
-                char format_char;
-        };
-    }
-}
+  char log_char;
+  char format_char;
+};
+} // namespace parser
+} // namespace backend
 
 #endif // __BACKEND_LOGS_PARSER_H_

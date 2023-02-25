@@ -7,7 +7,5 @@
 #include "ftxui/component/screen_interactive.hpp"
 
 namespace frontend {
-    FrontendService::FrontendService() {
-
-    }
-}
+FrontendService::FrontendService() {}
+} // namespace frontend

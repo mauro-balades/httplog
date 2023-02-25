@@ -8,18 +8,18 @@
 
 namespace frontend {
 
-    class FrontendService {
-        public:
-            FrontendService();
-            ~FrontendService() = default;
+class FrontendService {
+public:
+  FrontendService();
+  ~FrontendService() = default;
 
-            int createEventLoop(int log_fd, std::function<void(int,
-                  ftxui::Sender<std::wstring>,
-                  ftxui::ScreenInteractive*)> callback);
+  int createEventLoop(int log_fd,
+                      std::function<void(int, ftxui::Sender<std::wstring>,
+                                         ftxui::ScreenInteractive *)>
+                          callback);
 
-        private:
-
-    };
-}
+private:
+};
+} // namespace frontend
 
 #endif // __FRONTEND_MAIN_H_
