@@ -17,13 +17,13 @@
 
 int main(int argc, char *argv[]) {
 
-  backend::parser::LogsParser *parser = new backend::parser::LogsParser(
-      "127.0.0.1 - - [30/Dec/2022 13:18:15] \"%m %p HTTP/1.1\"");
-  parser->parse_line(
-      std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(
-          "127.0.0.1 - - [30/Dec/2022 13:18:15] \"GET /favicon.ico "
-          "HTTP/1.1\""));
-  return 0;
+  // backend::parser::LogsParser *parser = new backend::parser::LogsParser(
+  //     "127.0.0.1 - - [30/Dec/2022 13:18:15] \"%m %p HTTP/1.1\"");
+  // parser->parse_line(
+  //     std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(
+  //         "127.0.0.1 - - [30/Dec/2022 13:18:15] \"GET /favicon.ico "
+  //         "HTTP/1.1\""));
+  // return 0;
 
   auto frontendSerice = new frontend::FrontendService();
 

@@ -20,7 +20,7 @@ bool MainComponent::OnEvent(Event event) {
     std::wstring line;
     _receiver->Receive(&line);
 
-    auto parsed = _parser->parse_line(line);
+    // auto parsed = _parser->parse_line(line);
 
     this->parsed_logs.push_back(line);
   }
